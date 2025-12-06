@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">AIReviewDemo</string>
+    <string name="app_name">割り勘</string>
+
+    <!-- Labels -->
+    <string name="label_total_amount">合計金額（円）</string>
+    <string name="label_people_count">人数</string>
+    <string name="label_tip_percent">チップ（%・任意）</string>
+    <string name="label_rounding">端数処理</string>
+    <string name="round_none">なし</string>
+    <string name="round_nearest">四捨五入</string>
+    <string name="round_up">切り上げ</string>
+    <string name="round_down">切り捨て</string>
+    <string name="action_calculate">計算する</string>
+
+    <!-- Results -->
+    <string name="result_per_person">1人あたり: %1$s</string>
+    <string name="result_total_with_tip">チップ込み合計: %1$s</string>
+
+    <!-- Errors -->
+    <string name="error_required">必須項目です</string>
+    <string name="error_invalid_number">数値を入力してください</string>
+    <string name="error_positive_number">0より大きい値を入力してください</string>
+    <string name="error_people_integer">人数は1以上の整数で入力してください</string>
 </resources>
