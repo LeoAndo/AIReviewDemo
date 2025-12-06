@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val editTotal = findViewById<EditText>(R.id.editTotalAmount)
         val editPeople = findViewById<EditText>(R.id.editPeopleCount)
         val editTip = findViewById<EditText>(R.id.editTipPercent)
+        val editService = findViewById<EditText>(R.id.editServiceFee)
         val radioGroup = findViewById<RadioGroup>(R.id.radioRoundGroup)
         val btnCalc = findViewById<Button>(R.id.btnCalculate)
         val textPerPerson = findViewById<TextView>(R.id.textPerPerson)
@@ -40,10 +41,12 @@ class MainActivity : AppCompatActivity() {
             editTotal.clearError()
             editPeople.clearError()
             editTip.clearError()
+            editService.clearError()
 
             val totalAmount = parseDecimal(editTotal)
             val peopleCount = parseInt(editPeople)
             val tipPercent = parseDecimalAllowEmpty(editTip) ?: BigDecimal.ZERO
+            val serviceFee = parseDecimalAllowEmpty(editService) ?: BigDecimal.ZERO
 
             var hasError = false
             if (totalAmount == null) {
@@ -60,11 +63,16 @@ class MainActivity : AppCompatActivity() {
                 setError(editPeople, R.string.error_people_integer)
                 hasError = true
             }
+            if (serviceFee < BigDecimal.ZERO) {
+                setError(editService, R.string.error_non_negative_number)
+                hasError = true
+            }
             if (hasError) return@setOnClickListener
 
             val hundred = BigDecimal(100)
             val rate = BigDecimal.ONE.add(tipPercent.divide(hundred, 10, RoundingMode.HALF_UP))
-            val totalWithTip = totalAmount!!.multiply(rate)
+            val baseTotal = totalAmount!!.add(serviceFee)
+            val totalWithTip = baseTotal.multiply(rate)
             val perPersonRaw =
                 totalWithTip.divide(BigDecimal(peopleCount!!), 10, RoundingMode.HALF_UP)
 
