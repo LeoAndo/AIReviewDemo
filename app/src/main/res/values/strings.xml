@@ -5,7 +5,6 @@
     <string name="label_total_amount">合計金額（円）</string>
     <string name="label_people_count">人数</string>
     <string name="label_tip_percent">チップ（%・任意）</string>
-    <string name="label_service_fee">サービス料（円・任意）</string>
     <string name="label_rounding">端数処理</string>
     <string name="round_none">なし</string>
     <string name="round_nearest">四捨五入</string>
@@ -22,5 +21,4 @@
     <string name="error_invalid_number">数値を入力してください</string>
     <string name="error_positive_number">0より大きい値を入力してください</string>
     <string name="error_people_integer">人数は1以上の整数で入力してください</string>
-    <string name="error_non_negative_number">0以上の値を入力してください</string>
 </resources>
