@@ -67,9 +67,9 @@ class MainActivity : AppCompatActivity() {
 
             val hundred = BigDecimal(100)
             val rate = BigDecimal.ONE.add(tipPercent.divide(hundred, 10, RoundingMode.HALF_UP))
-            val totalWithTip = totalAmount!!.multiply(rate)
+            val totalWithTip = totalAmount?.multiply(rate)
             val perPersonRaw =
-                totalWithTip.divide(BigDecimal(peopleCount!!), 10, RoundingMode.HALF_UP)
+                totalWithTip?.divide(BigDecimal(peopleCount!!), 10, RoundingMode.HALF_UP)
 
             val roundingMode = when (radioGroup.checkedRadioButtonId) {
                 R.id.radioNearest -> RoundingMode.HALF_UP
@@ -79,8 +79,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             val perPerson =
-                if (roundingMode == null) perPersonRaw else perPersonRaw.setScale(0, roundingMode)
-            val totalWithTipRounded = totalWithTip.setScale(0, RoundingMode.HALF_UP)
+                if (roundingMode == null) perPersonRaw else perPersonRaw?.setScale(0, roundingMode)
+            val totalWithTipRounded = totalWithTip?.setScale(0, RoundingMode.HALF_UP)
 
             textPerPerson.text = getString(R.string.result_per_person, currency.format(perPerson))
             textTotalWithTip.text =
