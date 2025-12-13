@@ -6,4 +6,14 @@
     </style>
 
     <style name="Theme.AIReviewDemo" parent="Base.Theme.AIReviewDemo" />
+
+    <!-- SplashScreen theme -->
+    <style name="Theme.AIReviewDemo.Splash" parent="Theme.SplashScreen">
+        <!-- Background behind the icon -->
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <!-- Animated/icon shown in the center. You can replace with your own. -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <!-- After the splash, switch to the app theme automatically. -->
+        <item name="postSplashScreenTheme">@style/Theme.AIReviewDemo</item>
+    </style>
 </resources>

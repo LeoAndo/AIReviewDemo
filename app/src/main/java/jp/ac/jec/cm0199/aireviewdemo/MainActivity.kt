@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.math.BigDecimal
@@ -13,6 +14,8 @@ import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Install the SplashScreen before any other setup
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -71,10 +74,9 @@ class MainActivity : AppCompatActivity() {
 
             val hundred = BigDecimal(100)
             val rate = BigDecimal.ONE.add(tipPercent.divide(hundred, 10, RoundingMode.HALF_UP))
-            val baseTotal = totalAmount!!.add(serviceFee)
-            val totalWithTip = baseTotal.multiply(rate)
+            val totalWithTip = totalAmount?.multiply(rate)
             val perPersonRaw =
-                totalWithTip.divide(BigDecimal(peopleCount!!), 10, RoundingMode.HALF_UP)
+                totalWithTip?.divide(BigDecimal(peopleCount!!), 10, RoundingMode.HALF_UP)
 
             val roundingMode = when (radioGroup.checkedRadioButtonId) {
                 R.id.radioNearest -> RoundingMode.HALF_UP
@@ -84,8 +86,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             val perPerson =
-                if (roundingMode == null) perPersonRaw else perPersonRaw.setScale(0, roundingMode)
-            val totalWithTipRounded = totalWithTip.setScale(0, RoundingMode.HALF_UP)
+                if (roundingMode == null) perPersonRaw else perPersonRaw?.setScale(0, roundingMode)
+            val totalWithTipRounded = totalWithTip?.setScale(0, RoundingMode.HALF_UP)
 
             textPerPerson.text = getString(R.string.result_per_person, currency.format(perPerson))
             textTotalWithTip.text =
