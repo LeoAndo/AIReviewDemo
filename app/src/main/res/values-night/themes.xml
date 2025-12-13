@@ -4,4 +4,14 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <!-- Splash Screen Theme for Night Mode -->
+    <style name="Theme.AIReviewDemo.Splash" parent="Theme.SplashScreen">
+        <!-- Set the splash screen background to white (consistent across themes) -->
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <!-- Set the splash screen icon to the app launcher icon -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <!-- Set the theme to transition to after splash -->
+        <item name="postSplashScreenTheme">@style/Theme.AIReviewDemo</item>
+    </style>
 </resources>
