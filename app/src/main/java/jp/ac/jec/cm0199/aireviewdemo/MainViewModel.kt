@@ -7,8 +7,8 @@ import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
-import java.net.URLEncoder
 import java.net.URL
+import java.net.URLEncoder
 
 data class RepoItem(
     val name: String,
@@ -74,7 +74,7 @@ class MainViewModel : ViewModel() {
                                 description = o.optString("description", null),
                                 stars = o.optInt("stargazers_count"),
                                 htmlUrl = o.optString("html_url"),
-                            )
+                            ),
                         )
                     }
                     _results.postValue(list)
