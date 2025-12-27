@@ -8,144 +8,57 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/labelTotal"
+    <EditText
+        android:id="@+id/editQuery"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/label_total_amount"
+        android:hint="@string/hint_search"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/editTotalAmount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="@string/label_total_amount"
-        app:layout_constraintTop_toBottomOf="@id/labelTotal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/labelPeople"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/label_people_count"
-        app:layout_constraintTop_toBottomOf="@id/editTotalAmount"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp" />
-
-    <EditText
-        android:id="@+id/editPeopleCount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="@string/label_people_count"
-        app:layout_constraintTop_toBottomOf="@id/labelPeople"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/labelTip"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/label_tip_percent"
-        app:layout_constraintTop_toBottomOf="@id/editPeopleCount"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp" />
-
-    <EditText
-        android:id="@+id/editTipPercent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="@string/label_tip_percent"
-        app:layout_constraintTop_toBottomOf="@id/labelTip"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/labelRounding"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/label_rounding"
-        app:layout_constraintTop_toBottomOf="@id/editTipPercent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp" />
-
-    <RadioGroup
-        android:id="@+id/radioRoundGroup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/labelRounding"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <RadioButton
-            android:id="@+id/radioNone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/round_none"
-            android:checked="true" />
-
-        <RadioButton
-            android:id="@+id/radioNearest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="@string/round_nearest" />
-
-        <RadioButton
-            android:id="@+id/radioUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="@string/round_up" />
-
-        <RadioButton
-            android:id="@+id/radioDown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="@string/round_down" />
-    </RadioGroup>
+        app:layout_constraintEnd_toStartOf="@id/btnSearch"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_marginEnd="8dp" />
 
     <Button
-        android:id="@+id/btnCalculate"
-        android:layout_width="0dp"
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/action_calculate"
-        app:layout_constraintTop_toBottomOf="@id/radioRoundGroup"
+        android:text="@string/action_search"
+        app:layout_constraintTop_toTopOf="@id/editQuery"
+        app:layout_constraintBottom_toBottomOf="@id/editQuery"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/editQuery"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="12dp" />
 
     <TextView
-        android:id="@+id/textPerPerson"
+        android:id="@+id/textEmpty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/btnCalculate"
+        android:text="@string/empty_prompt"
+        app:layout_constraintTop_toBottomOf="@id/progress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        tools:text="1人あたり: ¥1,234" />
+        android:layout_marginTop="12dp"
+        tools:text="上の入力欄にキーワードを入れて「検索」を押してください" />
 
-    <TextView
-        android:id="@+id/textTotalWithTip"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerResults"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintTop_toBottomOf="@id/textPerPerson"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/textEmpty"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        tools:text="チップ込み合計: ¥12,345" />
+        tools:listitem="@android:layout/simple_list_item_2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
